@@ -5,7 +5,7 @@ from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 from fastapi import FastAPI
 
-from middelware.cors import setup_cors
+from middleware.cors import setup_cors
 
 load_dotenv()
 

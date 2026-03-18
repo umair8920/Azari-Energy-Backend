@@ -91,7 +91,7 @@ uvicorn app:app --reload --host 0.0.0.0 --port 8000
 - **api/** – Route modules (e.g. `api/auth/routes.py` for auth – structure only for now).
 - **controllers/** – Business logic (e.g. `auth_controller.py` – structure only).
 - **models/** – Schemas and (future) DB models.
-- **middelware/** – Custom middleware (e.g. CORS).
+- **middleware/** – Custom middleware (e.g. CORS).
 - **plugins/** – Pluggable components (DB, cache, etc.).
 - **utils/** – Shared utilities.
 
