@@ -1,0 +1,11 @@
+{% from "components/common/upload.html" import multi_upload %}
+<section class="space-y-4" aria-labelledby="rgb-analysis-heading">
+  <div>
+    <h2 id="rgb-analysis-heading" class="text-lg font-semibold text-base-content">RGB Analysis</h2>
+    <p class="mt-1 text-sm text-base-content/70">Upload PNG or JPG images for future RGB-based analysis.</p>
+  </div>
+  {{ multi_upload("ai-upload-rgb", "Images", "PNG and JPG. Multiple images supported.", category="rgb", accept="image/png,.png,image/jpeg,.jpg,.jpeg") }}
+  <div class="rounded-box border border-base-300 bg-base-200/30 p-4 text-sm text-base-content/70">
+    RGB analysis outputs and settings will plug in here next.
+  </div>
+</section>

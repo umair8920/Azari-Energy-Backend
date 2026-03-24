@@ -1,0 +1,48 @@
+{# Multi-file batch upload: queues on server; progress via Socket.IO (home layout only). #}
+{% macro multi_upload(input_id, title, description="", category="video", accept="video/mp4,.mp4") %}
+  <div class="form-control w-full max-w-2xl">
+    <label class="label pt-0" for="{{ input_id }}">
+      <span class="label-text font-medium">{{ title }}</span>
+    </label>
+    {% if description %}
+      <p class="label-text-alt mb-2 text-base-content/70">{{ description }}</p>
+    {% endif %}
+    <label
+      for="{{ input_id }}"
+      class="flex w-full cursor-pointer flex-col items-center justify-center gap-3 rounded-box border-2 border-dashed border-base-300 bg-base-200/40 px-6 py-12 transition-colors hover:border-primary/60 hover:bg-base-200/70"
+    >
+      <div class="rounded-full bg-primary/10 p-3 text-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+          />
+        </svg>
+      </div>
+      <div class="text-center">
+        <span class="font-medium text-base-content">Drop files here or click to browse</span>
+        <p class="mt-1 text-sm text-base-content/60">Server saves under <code class="text-xs">public/uploads/</code> for this category.</p>
+      </div>
+      <input
+        id="{{ input_id }}"
+        type="file"
+        class="hidden"
+        accept="{{ accept }}"
+        multiple
+        aria-describedby="{{ input_id }}-hint"
+      />
+      <span id="{{ input_id }}-hint" class="sr-only">Multi-select supported. Files are sent one at a time to the processing queue.</span>
+    </label>
+    <button
+      type="button"
+      class="btn btn-primary mt-4"
+      data-upload-start
+      data-upload-input="{{ input_id }}"
+      data-upload-category="{{ category }}"
+    >
+      Upload files
+    </button>
+  </div>
+{% endmacro %}

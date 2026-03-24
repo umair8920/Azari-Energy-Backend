@@ -1,0 +1,11 @@
+{% from "components/common/upload.html" import multi_upload %}
+<section class="space-y-4" aria-labelledby="video-analysis-heading">
+  <div>
+    <h2 id="video-analysis-heading" class="text-lg font-semibold text-base-content">Video Analysis</h2>
+    <p class="mt-1 text-sm text-base-content/70">Upload one or more MP4 files for future video analysis workflows.</p>
+  </div>
+  {{ multi_upload("ai-upload-video", "Video files", "MP4 only. Multiple videos supported.", category="video", accept="video/mp4,.mp4") }}
+  <div class="rounded-box border border-base-300 bg-base-200/30 p-4 text-sm text-base-content/70">
+    Analysis results and pipeline controls will appear here after you connect the backend.
+  </div>
+</section>

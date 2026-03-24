@@ -1,0 +1,31 @@
+<header class="navbar border-b border-base-300 bg-base-100 px-2 shadow-sm md:px-4">
+  <div class="flex-none lg:hidden">
+    <label for="app-drawer" class="btn btn-square btn-ghost drawer-button" aria-label="Open menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+  </div>
+  <div class="flex-1">
+    <a href="/" class="btn btn-ghost text-lg font-semibold tracking-tight">Azari Energy</a>
+  </div>
+  <div class="flex-none gap-2">
+    <div class="dropdown dropdown-end">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-sm gap-1" aria-label="Theme">
+        <span class="hidden sm:inline">Theme</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      </div>
+      <ul tabindex="0" class="dropdown-content menu z-50 mt-2 w-40 rounded-box border border-base-300 bg-base-100 p-2 shadow">
+        <li><button type="button" class="theme-set" data-theme-value="light">Light</button></li>
+        <li><button type="button" class="theme-set" data-theme-value="dark">Dark</button></li>
+      </ul>
+    </div>
+  </div>
+</header>

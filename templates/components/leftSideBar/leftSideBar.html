@@ -1,0 +1,16 @@
+<div class="drawer-side z-40">
+  <label for="app-drawer" aria-label="Close menu" class="drawer-overlay lg:hidden"></label>
+  <aside class="flex min-h-full w-64 flex-col border-r border-base-300 bg-base-200">
+    <div class="border-b border-base-300 p-4">
+      <p class="text-xs font-medium uppercase tracking-wide text-base-content/60">Navigation</p>
+    </div>
+    <ul class="menu w-full gap-1 p-4 text-base">
+      <li>
+        <a href="/" class="{% if (active_nav | default('')) == 'dashboard' %}active{% endif %}">Dashboard</a>
+      </li>
+      <li>
+        <a href="/ai-analysis" class="{% if (active_nav | default('')) == 'ai_analysis' %}active{% endif %}">AI Data Analysis</a>
+      </li>
+    </ul>
+  </aside>
+</div>
