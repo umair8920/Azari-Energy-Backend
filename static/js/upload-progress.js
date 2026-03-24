@@ -139,10 +139,19 @@
       return;
     }
     const files = Array.from(input.files);
+    const detConf = document.getElementById("det-conf");
+    const detSlice = document.getElementById("det-slice");
+    const detOverlap = document.getElementById("det-overlap");
+    const detParams = {
+      det_confidence: detConf ? parseInt(detConf.value, 10) / 100 : 0.25,
+      det_slice_size: detSlice ? parseInt(detSlice.value, 10) : 640,
+      det_overlap: detOverlap ? parseInt(detOverlap.value, 10) / 100 : 0.2,
+    };
+
     const startRes = await fetch("/api/uploads/batch/start", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ total: files.length, category }),
+      body: JSON.stringify({ total: files.length, category, ...detParams }),
     });
     if (!startRes.ok) {
       const err = await startRes.json().catch(() => ({}));
@@ -150,6 +159,7 @@
     }
     const { job_id: jobId } = await startRes.json();
     activeJobId = jobId;
+    window.dispatchEvent(new CustomEvent("azari:batch-started", { detail: { jobId, category } }));
     showRoot();
     setMinimized(false);
     const st = statusEl();

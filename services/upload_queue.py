@@ -104,6 +104,18 @@ async def _worker_loop() -> None:
             unique = f"{uuid.uuid4().hex}_{_safe_filename(item.filename)}"
             out_path = dest_dir / unique
             out_path.write_bytes(item.data)
+
+            file_type = "video" if job.category == "video" else "image"
+            if job.category == "thermal" and item.filename.lower().endswith(".mp4"):
+                file_type = "video"
+            try:
+                from services import detection
+                await detection.queue_file(
+                    item.job_id, str(out_path), item.filename, file_type,
+                )
+            except Exception:
+                pass
+
             job.completed += 1
             total = job.total
             percent = min(100, int(100 * job.completed / total)) if total else 100

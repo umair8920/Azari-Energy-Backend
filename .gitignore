@@ -67,3 +67,9 @@ public/uploads/thermalimages/*
 
 #node modules
 node_modules/
+
+# model file
+tl_defect_cn1/
+
+# public files
+public/
