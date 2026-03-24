@@ -1,0 +1,44 @@
+{# Global batch upload progress (home layout only). Requires Socket.IO client + upload-progress.js #}
+<div id="upload-progress-root" class="pointer-events-none fixed inset-0 z-[60] hidden" aria-live="polite">
+  <button
+    type="button"
+    id="upload-progress-fab"
+    class="btn btn-primary btn-circle pointer-events-auto fixed bottom-6 right-6 z-[70] hidden shadow-lg"
+    aria-label="Open upload progress"
+  >
+    <span class="relative flex h-10 w-10 items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+        />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <span id="upload-progress-fab-pct" class="absolute text-xs font-bold">0%</span>
+    </span>
+  </button>
+
+  <div
+    id="upload-progress-panel"
+    class="pointer-events-auto fixed right-0 top-0 flex h-full w-full max-w-md translate-x-0 flex-col border-l border-base-300 bg-base-100 shadow-2xl transition-transform duration-300 ease-out"
+  >
+    <div class="flex items-center justify-between border-b border-base-300 px-4 py-3">
+      <h2 class="text-lg font-semibold">Upload progress</h2>
+      <button type="button" id="upload-progress-minimize" class="btn btn-ghost btn-sm btn-square" aria-label="Minimize to floating button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-1 flex-col gap-4 overflow-y-auto p-4">
+      <p id="upload-progress-status" class="text-sm text-base-content/70">Preparing…</p>
+      <progress id="upload-progress-bar" class="progress progress-primary w-full" value="0" max="100"></progress>
+      <p id="upload-progress-detail" class="truncate text-xs text-base-content/60"></p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.socket.io/4.8.1/socket.io.min.js" crossorigin="anonymous"></script>
+<script src="/static/js/upload-progress.js" defer></script>

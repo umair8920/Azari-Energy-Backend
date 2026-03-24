@@ -1,0 +1,36 @@
+{# Parent: three tabs at top of this page only; sidebar has a single "AI Data Analysis" link. #}
+<div class="space-y-6">
+  <header class="space-y-4">
+    <h1 class="text-2xl font-bold tracking-tight text-base-content">AI Data Analysis</h1>
+    <div role="tablist" class="tabs tabs-boxed w-full max-w-xl flex-wrap gap-1" aria-label="Analysis type">
+      <a
+        role="tab"
+        href="{{ request.url.path }}?tab=video"
+        class="tab {% if (active_tab | default('video')) == 'video' %}tab-active{% endif %}"
+      >Video Analysis</a>
+      <a
+        role="tab"
+        href="{{ request.url.path }}?tab=rgb"
+        class="tab {% if (active_tab | default('video')) == 'rgb' %}tab-active{% endif %}"
+      >RGB Analysis</a>
+      <a
+        role="tab"
+        href="{{ request.url.path }}?tab=thermal"
+        class="tab {% if (active_tab | default('video')) == 'thermal' %}tab-active{% endif %}"
+      >Thermal Analysis</a>
+    </div>
+    <p class="text-sm text-base-content/70">Switch analysis type using the tabs above. Each tab has its own upload area (UI only for now).</p>
+  </header>
+
+  <div class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm">
+    {% if (active_tab | default('video')) == 'video' %}
+      {% include "components/aiAnalysis/videoAnalysis.html" %}
+    {% elif (active_tab | default('video')) == 'rgb' %}
+      {% include "components/aiAnalysis/rGBAnalysis.html" %}
+    {% elif (active_tab | default('video')) == 'thermal' %}
+      {% include "components/aiAnalysis/thermalanalysis.html" %}
+    {% else %}
+      {% include "components/aiAnalysis/videoAnalysis.html" %}
+    {% endif %}
+  </div>
+</div>

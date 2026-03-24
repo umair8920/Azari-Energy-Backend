@@ -1,0 +1,15 @@
+{# Shell with app bar + drawer sidebar; page wrappers fill {% block main %} #}
+{% extends "layout/default.html" %}
+{% block body %}
+  <div class="drawer lg:drawer-open">
+    <input id="app-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content flex min-h-screen flex-col">
+      {% include "components/appBar/appBar.html" %}
+      <main class="flex-1 p-4 md:p-6 lg:p-8">
+        {% block main %}{% endblock %}
+      </main>
+    </div>
+    {% include "components/leftSideBar/leftSideBar.html" %}
+  </div>
+  {% include "partials/upload_progress_global.html" %}
+{% endblock %}

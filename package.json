@@ -1,0 +1,30 @@
+{
+  "name": "azari-energy-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Azari Energy, built with **FastAPI**.",
+  "main": "postcss.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --minify",
+    "watch:css": "npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umair8920/Azari-Energy-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umair8920/Azari-Energy-Backend/issues"
+  },
+  "homepage": "https://github.com/umair8920/Azari-Energy-Backend#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "@tailwindcss/postcss": "^4.2.2",
+    "autoprefixer": "^10.4.27",
+    "daisyui": "^5.5.19",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.2"
+  }
+}

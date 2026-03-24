@@ -1,0 +1,18 @@
+{# Global head: Google Fonts, stylesheet, theme (light/dark) before paint #}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" href="/static/css/output.css" />
+<script>
+  (function () {
+    const storageKey = "azari-theme";
+    const root = document.documentElement;
+    const stored = localStorage.getItem(storageKey);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = stored === "light" || stored === "dark" ? stored : prefersDark ? "dark" : "light";
+    root.setAttribute("data-theme", theme);
+  })();
+</script>

@@ -52,7 +52,18 @@ coverage.xml
 *.log
 logs/
 
+# User uploads (keep folder structure via .gitkeep)
+public/uploads/videos/*
+!public/uploads/videos/.gitkeep
+public/uploads/rgbimages/*
+!public/uploads/rgbimages/.gitkeep
+public/uploads/thermalimages/*
+!public/uploads/thermalimages/.gitkeep
+
 # Local config (do not commit secrets)
 *.local
 .env.local
 .env.*.local
+
+#node modules
+node_modules/

@@ -1,0 +1,11 @@
+{% from "components/common/upload.html" import multi_upload %}
+<section class="space-y-4" aria-labelledby="thermal-analysis-heading">
+  <div>
+    <h2 id="thermal-analysis-heading" class="text-lg font-semibold text-base-content">Thermal Analysis</h2>
+    <p class="mt-1 text-sm text-base-content/70">Upload thermal images (PNG/JPG) or reference MP4 where applicable.</p>
+  </div>
+  {{ multi_upload("ai-upload-thermal", "Thermal inputs", "PNG, JPG, or MP4. Multiple files supported.", category="thermal", accept="image/png,.png,image/jpeg,.jpg,.jpeg,video/mp4,.mp4") }}
+  <div class="rounded-box border border-base-300 bg-base-200/30 p-4 text-sm text-base-content/70">
+    Thermal maps and metrics will render here once the pipeline is connected.
+  </div>
+</section>
