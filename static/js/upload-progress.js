@@ -132,13 +132,24 @@
     }
   };
 
-  const startBatchUpload = async (inputId, category) => {
+  const getFilesForUpload = (inputId) => {
+    const fromPreview = window.__azariUploadQueues?.[inputId];
+    if (Array.isArray(fromPreview) && fromPreview.length > 0) {
+      return fromPreview.slice();
+    }
     const input = document.getElementById(inputId);
-    if (!input || !input.files || input.files.length === 0) {
+    if (input?.files?.length) {
+      return Array.from(input.files);
+    }
+    return [];
+  };
+
+  const startBatchUpload = async (inputId, category) => {
+    const files = getFilesForUpload(inputId);
+    if (files.length === 0) {
       window.alert("Choose one or more files first.");
       return;
     }
-    const files = Array.from(input.files);
     const detConf = document.getElementById("det-conf");
     const detSlice = document.getElementById("det-slice");
     const detOverlap = document.getElementById("det-overlap");

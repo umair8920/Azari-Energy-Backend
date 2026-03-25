@@ -1,9 +1,38 @@
 {% from "components/common/upload.html" import multi_upload %}
-<section class="space-y-4" aria-labelledby="video-analysis-heading">
-  <div>
-    <h2 id="video-analysis-heading" class="text-lg font-semibold text-base-content">Video Analysis</h2>
-    <p class="mt-1 text-sm text-base-content/70">Upload MP4 files. Defect detection runs automatically via YOLO + SAHI.</p>
+<section class="space-y-10" aria-labelledby="video-analysis-heading">
+  <div class="space-y-4 border-b border-base-300/60 pb-8 dark:border-base-content/10">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-6">
+      <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20" aria-hidden="true">
+        <span class="mdi mdi-video-outline text-3xl leading-none"></span>
+      </span>
+      <div class="min-w-0 flex-1 space-y-2">
+        <h2 id="video-analysis-heading" class="text-xl font-bold tracking-tight text-base-content sm:text-2xl">Video analysis</h2>
+        <p class="max-w-2xl text-sm leading-relaxed text-base-content/70">
+          Upload MP4 clips for automated inspection. Defect detection runs with YOLO + SAHI; results appear below after processing.
+        </p>
+        <ul class="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-xs text-base-content/55">
+          <li class="flex items-center gap-2">
+            <span class="mdi mdi-check-circle-outline text-base text-primary/80" aria-hidden="true"></span>
+            MP4, multiple files
+          </li>
+          <li class="flex items-center gap-2">
+            <span class="mdi mdi-server-network text-base text-primary/80" aria-hidden="true"></span>
+            Server-side queue
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  {{ multi_upload("ai-upload-video", "Video files", "MP4 only. Multiple videos supported.", category="video", accept="video/mp4,.mp4") }}
-  <div id="detection-container" data-category="video"></div>
+
+  <div class="space-y-6">
+    {{ multi_upload("ai-upload-video", "Video files", "MP4 only. You can add several videos to the queue.", category="video", accept="video/mp4,.mp4", icon="mdi-video-outline") }}
+  </div>
+
+  <div class="space-y-3 pt-2">
+    <h3 class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-base-content/50">
+      <span class="mdi mdi-clipboard-list-outline text-lg leading-none text-primary/80" aria-hidden="true"></span>
+      Detection results
+    </h3>
+    <div id="detection-container" data-category="video" class="min-h-[4rem] rounded-xl border border-dashed border-base-300/80 bg-base-200/20 p-4 dark:border-base-content/10"></div>
+  </div>
 </section>

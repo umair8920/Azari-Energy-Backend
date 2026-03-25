@@ -1,28 +1,60 @@
-{# Parent: three tabs at top of this page only; sidebar has a single "AI Data Analysis" link. #}
-<div class="space-y-6">
-  <header class="space-y-4">
-    <h1 class="text-2xl font-bold tracking-tight text-base-content">AI Data Analysis</h1>
-    <div role="tablist" class="tabs tabs-boxed w-full max-w-xl flex-wrap gap-1" aria-label="Analysis type">
-      <a
-        role="tab"
-        href="{{ request.url.path }}?tab=video"
-        class="tab {% if (active_tab | default('video')) == 'video' %}tab-active{% endif %}"
-      >Video Analysis</a>
-      <a
-        role="tab"
-        href="{{ request.url.path }}?tab=rgb"
-        class="tab {% if (active_tab | default('video')) == 'rgb' %}tab-active{% endif %}"
-      >RGB Analysis</a>
-      <a
-        role="tab"
-        href="{{ request.url.path }}?tab=thermal"
-        class="tab {% if (active_tab | default('video')) == 'thermal' %}tab-active{% endif %}"
-      >Thermal Analysis</a>
+{# Parent: analysis type tabs + panel; matches home shell spacing. #}
+<div class="mx-auto max-w-5xl space-y-10 pb-8 font-sans">
+  <header class="space-y-6">
+    <div class="flex flex-col gap-4 border-b border-base-300/80 pb-8 sm:flex-row sm:items-end sm:justify-between">
+      <div class="space-y-2">
+        <div class="flex items-center gap-3">
+          <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20" aria-hidden="true">
+            <span class="mdi mdi-chart-timeline-variant text-2xl leading-none"></span>
+          </span>
+          <div>
+            <h1 class="text-2xl font-bold tracking-tight text-base-content sm:text-3xl">AI Data Analysis</h1>
+            <p class="mt-1 max-w-xl text-sm leading-relaxed text-base-content/65">
+              Upload assets by modality. Each workflow uses YOLO + SAHI for defect detection; pick a tab to switch context.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="text-sm text-base-content/70">Switch analysis type using the tabs above. Each tab has its own upload area (UI only for now).</p>
+
+    <nav class="w-full" aria-label="Analysis type">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-base-content/45">Analysis type</p>
+      <div
+        role="tablist"
+        class="flex flex-col gap-2 rounded-2xl border border-base-300/90 bg-base-200/40 p-2 shadow-inner dark:border-base-content/10 dark:bg-base-200/25 sm:flex-row sm:gap-2 sm:p-1.5"
+      >
+        <a
+          role="tab"
+          href="{{ request.url.path }}?tab=video"
+          aria-selected="{% if (active_tab | default('video')) == 'video' %}true{% else %}false{% endif %}"
+          class="flex min-h-[3.25rem] flex-1 items-center justify-center gap-2.5 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 sm:min-h-0 sm:py-2.5 {% if (active_tab | default('video')) == 'video' %}bg-base-100 text-primary shadow-md ring-1 ring-base-300/80 dark:bg-base-100 dark:ring-base-content/15{% else %}text-base-content/65 hover:bg-base-100/70 hover:text-base-content dark:hover:bg-base-content/5{% endif %}"
+        >
+          <span class="mdi mdi-video-outline shrink-0 text-xl leading-none" aria-hidden="true"></span>
+          <span>Video</span>
+        </a>
+        <a
+          role="tab"
+          href="{{ request.url.path }}?tab=rgb"
+          aria-selected="{% if (active_tab | default('video')) == 'rgb' %}true{% else %}false{% endif %}"
+          class="flex min-h-[3.25rem] flex-1 items-center justify-center gap-2.5 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 sm:min-h-0 sm:py-2.5 {% if (active_tab | default('video')) == 'rgb' %}bg-base-100 text-primary shadow-md ring-1 ring-base-300/80 dark:bg-base-100 dark:ring-base-content/15{% else %}text-base-content/65 hover:bg-base-100/70 hover:text-base-content dark:hover:bg-base-content/5{% endif %}"
+        >
+          <span class="mdi mdi-image-multiple-outline shrink-0 text-xl leading-none" aria-hidden="true"></span>
+          <span>RGB</span>
+        </a>
+        <a
+          role="tab"
+          href="{{ request.url.path }}?tab=thermal"
+          aria-selected="{% if (active_tab | default('video')) == 'thermal' %}true{% else %}false{% endif %}"
+          class="flex min-h-[3.25rem] flex-1 items-center justify-center gap-2.5 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 sm:min-h-0 sm:py-2.5 {% if (active_tab | default('video')) == 'thermal' %}bg-base-100 text-primary shadow-md ring-1 ring-base-300/80 dark:bg-base-100 dark:ring-base-content/15{% else %}text-base-content/65 hover:bg-base-100/70 hover:text-base-content dark:hover:bg-base-content/5{% endif %}"
+        >
+          <span class="mdi mdi-thermometer-lines shrink-0 text-xl leading-none" aria-hidden="true"></span>
+          <span>Thermal</span>
+        </a>
+      </div>
+    </nav>
   </header>
 
-  <div class="rounded-box border border-base-300 bg-base-100 p-6 shadow-sm">
+  <div class="rounded-2xl border border-base-300/90 bg-base-100 p-6 shadow-sm dark:border-base-content/10 sm:p-8 md:p-10">
     {% if (active_tab | default('video')) == 'video' %}
       {% include "components/aiAnalysis/videoAnalysis.html" %}
     {% elif (active_tab | default('video')) == 'rgb' %}

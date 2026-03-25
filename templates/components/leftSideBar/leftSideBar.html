@@ -1,15 +1,48 @@
 <div class="drawer-side z-40">
   <label for="app-drawer" aria-label="Close menu" class="drawer-overlay lg:hidden"></label>
-  <aside class="flex min-h-full w-64 flex-col border-r border-base-300 bg-base-200">
-    <div class="border-b border-base-300 p-4">
-      <p class="text-xs font-medium uppercase tracking-wide text-base-content/60">Navigation</p>
+  <aside
+    class="app-sidebar glass flex min-h-full w-64 max-w-full flex-col border-r border-base-content/10 transition-[width] duration-200 ease-out lg:duration-200"
+  >
+    <div class="sidebar-header-inner border-b border-base-content/10 px-3 py-4">
+      <div class="flex items-center gap-2">
+        <a href="/" class="sidebar-logo flex min-w-0 flex-1 items-center justify-center lg:justify-start" aria-label="AzerEnerji home">
+          <span
+            class="sidebar-logo-panel flex h-16 w-full max-w-[14rem] items-center justify-center rounded-xl bg-base-300/85 px-4 py-2.5 shadow-sm ring-1 ring-base-content/10 dark:bg-base-content/[0.12] dark:ring-base-content/20"
+          >
+            <img
+              src="/static/assets/images/azerenerji-logo.png"
+              alt="AzerEnerji"
+              width="220"
+              height="64"
+              class="max-h-11 w-auto max-w-full object-contain object-center sm:max-h-12"
+              loading="eager"
+            />
+          </span>
+        </a>
+        <button
+          type="button"
+          id="sidebar-collapse-toggle"
+          class="btn btn-square btn-ghost btn-sm hidden shrink-0 self-start lg:inline-flex"
+          aria-label="Collapse sidebar"
+          title="Collapse sidebar"
+        >
+          <span class="sidebar-icon-expanded mdi mdi-menu text-xl leading-none" aria-hidden="true"></span>
+          <span class="sidebar-icon-collapsed mdi mdi-chevron-double-right text-xl leading-none hidden" aria-hidden="true"></span>
+        </button>
+      </div>
     </div>
-    <ul class="menu w-full gap-1 p-4 text-base">
+    <ul class="menu w-full flex-1 gap-1.5 p-4 text-base font-sans">
       <li>
-        <a href="/" class="{% if (active_nav | default('')) == 'dashboard' %}active{% endif %}">Dashboard</a>
+        <a href="/" class="{% if (active_nav | default('')) == 'dashboard' %}active{% endif %}">
+          <span class="mdi mdi-view-dashboard-outline shrink-0 text-xl leading-none" aria-hidden="true"></span>
+          <span class="sidebar-nav-label">Dashboard</span>
+        </a>
       </li>
       <li>
-        <a href="/ai-analysis" class="{% if (active_nav | default('')) == 'ai_analysis' %}active{% endif %}">AI Data Analysis</a>
+        <a href="/ai-analysis" class="{% if (active_nav | default('')) == 'ai_analysis' %}active{% endif %}">
+          <span class="mdi mdi-chart-scatter-plot shrink-0 text-xl leading-none" aria-hidden="true"></span>
+          <span class="sidebar-nav-label">AI Data Analysis</span>
+        </a>
       </li>
     </ul>
   </aside>

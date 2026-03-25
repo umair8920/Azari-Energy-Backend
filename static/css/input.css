@@ -7,7 +7,193 @@
   themes: light --default, dark --prefersdark;
 }
 
+/*
+  Custom dark palette (deep navy + cyan). DaisyUI’s built-in dark theme is emitted
+  inside @layer base as [data-theme=dark]. That can win over @plugin "daisyui/theme"
+  in the cascade, so components like the drawer sidebar still saw the old grays.
+  These rules are intentionally NOT in @layer so they override layered DaisyUI output.
+*/
+:root:has(input.theme-controller[value=dark]:checked),
+[data-theme=dark],
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-base-100: oklch(14% 0.046 265);
+  --color-base-200: oklch(11.5% 0.042 268);
+  --color-base-300: oklch(9% 0.036 270);
+  --color-base-content: oklch(96.7% 0 0);
+  --color-primary: oklch(71.5% 0.143 215);
+  --color-primary-content: oklch(14% 0.046 265);
+  --color-secondary: oklch(78.9% 0.127 212);
+  --color-secondary-content: oklch(14% 0.046 265);
+  --color-accent: oklch(70% 0.18 280);
+  --color-accent-content: oklch(96% 0.01 280);
+  --color-neutral: oklch(17.8% 0.020 265);
+  --color-neutral-content: oklch(92% 0.004 265);
+  --color-info: oklch(71.5% 0.143 215);
+  --color-info-content: oklch(14% 0.046 265);
+  --color-success: oklch(76% 0.177 163.223);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(82% 0.189 84.429);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(71% 0.194 13.428);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 0.5rem;
+  --radius-field: 0.25rem;
+  --radius-box: 0.5rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --color-base-100: oklch(14% 0.046 265);
+    --color-base-200: oklch(11.5% 0.042 268);
+    --color-base-300: oklch(9% 0.036 270);
+    --color-base-content: oklch(96.7% 0 0);
+    --color-primary: oklch(71.5% 0.143 215);
+    --color-primary-content: oklch(14% 0.046 265);
+    --color-secondary: oklch(78.9% 0.127 212);
+    --color-secondary-content: oklch(14% 0.046 265);
+    --color-accent: oklch(70% 0.18 280);
+    --color-accent-content: oklch(96% 0.01 280);
+    --color-neutral: oklch(17.8% 0.020 265);
+    --color-neutral-content: oklch(92% 0.004 265);
+    --color-info: oklch(71.5% 0.143 215);
+    --color-info-content: oklch(14% 0.046 265);
+    --color-success: oklch(76% 0.177 163.223);
+    --color-success-content: oklch(37% 0.077 168.94);
+    --color-warning: oklch(82% 0.189 84.429);
+    --color-warning-content: oklch(41% 0.112 45.904);
+    --color-error: oklch(71% 0.194 13.428);
+    --color-error-content: oklch(27% 0.105 12.094);
+    --radius-selector: 0.5rem;
+    --radius-field: 0.25rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
+  }
+}
+
 @theme {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --animate-slide-up: slide-up 0.4s ease-out;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out;
+  --animate-progress-indeterminate: progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklch, var(--color-base-200) 70%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in oklch, var(--color-base-content) 10%, transparent);
+}
+
+@utility text-gradient {
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility card-glow {
+  box-shadow: 0 0 30px color-mix(in oklch, var(--color-primary) 20%, transparent);
+}
+
+@utility card-glow-hover {
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 0 0 40px color-mix(in oklch, var(--color-primary) 30%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-in-right,
+  .animate-slide-up {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+@layer base {
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-mono), ui-monospace, monospace;
+  }
+}
+
+/* Desktop sidebar rail: overrides Tailwind width utility via unlayered rules */
+@media (width >= 64rem) {
+  html[data-sidebar-collapsed="true"] .app-sidebar {
+    width: 4.5rem;
+    min-width: 4.5rem;
+  }
+
+  html[data-sidebar-collapsed="true"] .app-sidebar .sidebar-logo {
+    display: none;
+  }
+
+  html[data-sidebar-collapsed="true"] .app-sidebar .sidebar-header-inner > div {
+    justify-content: center;
+  }
+
+  html[data-sidebar-collapsed="true"] .sidebar-icon-expanded {
+    display: none;
+  }
+
+  html[data-sidebar-collapsed="true"] .sidebar-icon-collapsed {
+    display: inline-block;
+  }
+
+  html[data-sidebar-collapsed="true"] .sidebar-nav-label {
+    display: none;
+  }
+
+  html[data-sidebar-collapsed="true"] .app-sidebar .menu :where(li > a) {
+    justify-content: center;
+    justify-items: center;
+    padding-inline: 0.5rem;
+  }
 }
