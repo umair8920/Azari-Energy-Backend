@@ -1,6 +1,5 @@
 # Environment
 !.env.example
-.env
 .venv
 venv/
 env/
@@ -30,7 +29,6 @@ wheels/
 
 # IDE / Editor
 .idea/
-.vscode/
 *.swp
 *.swo
 *~
@@ -62,7 +60,6 @@ public/uploads/thermalimages/*
 
 # Local config (do not commit secrets)
 *.local
-.env.local
 .env.*.local
 
 #node modules
@@ -73,3 +70,4 @@ tl_defect_cn1/
 
 # public files
 public/
+config.bat
